@@ -26,7 +26,11 @@ const ClientEligibleRequest: SchemaOf<IClientRequest> = yup.object().shape({
     .string()
     .required()
     .oneOf(["branca", "convencional"], "Modalidade tarifária não aceita"),
-  historicoDeConsumo: yup.array().required().min(3).max(12),
+  historicoDeConsumo: yup
+    .array()
+    .required()
+    .min(3, "Histórico de consumo deve conter entre 3 a 12 meses")
+    .max(12, "Histórico de consumo deve conter entre 3 a 12 meses"),
 });
 
 export { ClientEligibleRequest };

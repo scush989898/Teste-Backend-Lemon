@@ -33,7 +33,7 @@ const parcialPeriod: IClientRequest = {
   tipoDeConexao: "bifasico",
   classeDeConsumo: "comercial",
   modalidadeTarifaria: "convencional",
-  historicoDeConsumo: [10000, 10000, 10000, 10000, 10000, 10000],
+  historicoDeConsumo: [9999, 9999, 9999, 9999, 9999, 9999],
 };
 
 const wrongClassAndModality: IClientRequest = {
