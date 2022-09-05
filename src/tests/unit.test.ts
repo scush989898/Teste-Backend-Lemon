@@ -22,12 +22,16 @@ describe("testing functions related to consumption calculation", () => {
     expect(res[1]).toEqual(sum);
   });
 
-  test("should return the parcial/full value of a specific connection type", () => {
-    const fullPeriod = getConnectionAvg("bifasico", period);
-    expect(fullPeriod).toBe(500);
+  test("should return the value of a specific connection type", () => {
+    const monofasico = getConnectionAvg("monofasico");
+    expect(monofasico).toBe(400);
 
-    const parcialPeriod = getConnectionAvg("bifasico", period / 2);
-    expect(parcialPeriod).toBe(250);
+    const bisafico = getConnectionAvg("bifasico");
+    expect(bisafico).toBe(500);
+
+    const trifasico = getConnectionAvg("trifasico");
+    expect(trifasico).toBe(750);
+
   });
 
   test("should return the correct value of savings", () => {

@@ -13,7 +13,7 @@ const clientEligibleController = (req: Request, res: Response) => {
   if (isArrayValid.length != 0)
     throw new EligibilityError("Formato inválido de histórico de consumo", 400);
 
-  const savings = +clientEligibleService(req.body, months).toFixed(2);
+  const savings = +clientEligibleService(req.body).toFixed(2);
 
   if (months < 12) {
     return res.json({
