@@ -9,7 +9,7 @@ const validationMiddleware =
 
       const validated = await schema.validate(client, {
         stripUnknown: true,
-        abortEarly:false
+        abortEarly: false,
       });
 
       req.body = validated;
@@ -17,7 +17,7 @@ const validationMiddleware =
     } catch (error: any) {
       return res.status(400).json({
         elegivel: false,
-        razoesInelegibilidade: [error.errors?.join(", ")],
+        razoesInelegibilidade: [...error.errors],
       });
     }
   };
