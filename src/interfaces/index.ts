@@ -6,13 +6,6 @@ export interface IClientRequest {
   historicoDeConsumo: number[];
 }
 
-export interface IClientEligibleResponse {
-  elegivel: boolean;
-  economiaAnualDeCO2: number;
-}
 
-export interface IClientNotEligibleResponse {
-  elegivel: boolean;
-  razoesInelegibilidade: string[];
-}
+
 

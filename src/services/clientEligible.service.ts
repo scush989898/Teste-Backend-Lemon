@@ -1,8 +1,4 @@
-import {
-  IClientEligibleResponse,
-  IClientNotEligibleResponse,
-  IClientRequest,
-} from "../interfaces";
+import { IClientRequest } from "../interfaces";
 import { EligibilityError } from "../errors/eligibility.error";
 
 const eligibilityTerms = {
@@ -11,34 +7,27 @@ const eligibilityTerms = {
   trifasico: 750 / 12,
 };
 
-const amountCarbonKG = 84 / 12;
+const amountCarbonKG = 84;
 
 const clientEligibleService = (
-  data: IClientRequest
-): IClientEligibleResponse | IClientNotEligibleResponse => {
-  const period = data.historicoDeConsumo.length;
+  data: IClientRequest,
+  period: number
+): number => {
   const [average, sum] = getAvgConsumption(data.historicoDeConsumo);
   const connectionAvg = getConnectionAvg(data.tipoDeConexao, period);
 
-  if (average <= connectionAvg! ) {
+  if (average <= connectionAvg!) {
     throw new EligibilityError(
       "A média de consumo não atingiu o valor mínimo estipulado."
     );
   }
-  const savings = getAvgSavings(period, sum);
-
-  const res: IClientEligibleResponse = {
-    elegivel: true,
-    economiaAnualDeCO2: savings,
-  };
-
-  return res;
+  return getAvgSavings(sum);
 };
 
 const getAvgConsumption = (arr: number[]): number[] => {
-  const sum = arr.reduce((a, b) => a + b);
-  const avg = sum / arr.length;
-  return [avg, sum];
+  const sum = arr.reduce((a, b) => a + b, 0);
+  const average = sum / arr.length;
+  return [average, sum];
 };
 
 const getConnectionAvg = (connectionType: string, period: number) => {
@@ -49,9 +38,8 @@ const getConnectionAvg = (connectionType: string, period: number) => {
   }
 };
 
-const getAvgSavings = (period: number, sum: number): number => {
-  const amountInterval = period * amountCarbonKG;
-  return (sum / 1000) * amountInterval;
+const getAvgSavings = (sum: number): number => {
+  return (sum / 1000) * amountCarbonKG;
 };
 
 export default clientEligibleService;

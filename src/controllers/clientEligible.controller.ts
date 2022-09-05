@@ -2,9 +2,21 @@ import { Request, Response } from "express";
 import clientEligibleService from "../services/clientEligible.service";
 
 const clientEligibleController = (req: Request, res: Response) => {
-  const response = clientEligibleService(req.body);
+  const months = req.body.historicoDeConsumo.length;
+  const savings = +clientEligibleService(req.body, months).toFixed(2);
 
-  return res.json(response);
+  if (months < 12) {
+    return res.json({
+      elegivel: true,
+      quantidadeMesesAvaliados: months,
+      economiaParcialDeCO2: savings,
+    });
+  }
+
+  return res.json({
+    elegivel: true,
+    economiaAnualDeCO2: savings,
+  });
 };
 
 export default clientEligibleController;
