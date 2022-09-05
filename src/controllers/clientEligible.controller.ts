@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import clientEligibleService from "../services/clientEligible.service";
+import {clientEligibleService} from "../services/clientEligible.service";
 
 const clientEligibleController = (req: Request, res: Response) => {
   const months = req.body.historicoDeConsumo.length;

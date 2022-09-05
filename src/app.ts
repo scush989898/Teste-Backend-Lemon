@@ -7,6 +7,7 @@ import { ClientEligibleRequest } from "./schemas/input.schema";
 import { handleErrorMiddleware } from "./middlewares/handleError.middleware";
 
 const app = express();
+
 app.use(express.json());
 
 app.post(
@@ -14,7 +15,9 @@ app.post(
   validationMiddleware(ClientEligibleRequest),
   clientEligibleController
 );
+
 app.use(handleErrorMiddleware);
+
 app.listen(process.env.PORT || 3000, () => {
   console.log("server is running");
 });

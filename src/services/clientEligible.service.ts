@@ -17,9 +17,7 @@ const clientEligibleService = (
   const connectionAvg = getConnectionAvg(data.tipoDeConexao, period);
 
   if (average <= connectionAvg!) {
-    throw new EligibilityError(
-      "A média de consumo não atingiu o valor mínimo estipulado."
-    );
+    throw new EligibilityError("Consumo muito baixo para tipo de conexão");
   }
   return getAvgSavings(sum);
 };
@@ -42,4 +40,11 @@ const getAvgSavings = (sum: number): number => {
   return (sum / 1000) * amountCarbonKG;
 };
 
-export default clientEligibleService;
+export {
+  clientEligibleService,
+  getAvgConsumption,
+  getConnectionAvg,
+  getAvgSavings,
+  eligibilityTerms,
+  amountCarbonKG,
+};
