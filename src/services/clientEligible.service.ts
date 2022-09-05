@@ -13,6 +13,13 @@ const clientEligibleService = (
   data: IClientRequest,
   period: number
 ): number => {
+  const isArrayValid = data.historicoDeConsumo.filter(
+    (el) => typeof el != "number"
+  );
+  if (isArrayValid.length != 0) {
+    throw new EligibilityError("Formato inválido de histórico de consumo", 400);
+  }
+
   const [average, sum] = getAvgConsumption(data.historicoDeConsumo);
   const connectionAvg = getConnectionAvg(data.tipoDeConexao, period);
 

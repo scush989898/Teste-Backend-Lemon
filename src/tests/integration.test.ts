@@ -7,6 +7,7 @@ import {
   wrongArrayLength,
   lowConsumption,
   parcialPeriod,
+  invalidArrayTypeOfItems,
 } from "./mocks";
 
 import app from "../app";
