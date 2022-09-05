@@ -19,7 +19,7 @@ const ClientEligibleRequest: SchemaOf<IClientRequest> = yup.object().shape({
     .string()
     .required()
     .oneOf(
-      ["comercial", "residencial","industrial"],
+      ["comercial", "residencial", "industrial"],
       "Classe de consumo não aceita"
     ),
   modalidadeTarifaria: yup

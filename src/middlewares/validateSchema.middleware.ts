@@ -15,7 +15,6 @@ const validationMiddleware =
       req.body = validated;
       next();
     } catch (error: any) {
-      console.log(error,'IJSAJI0ASJIMSNA')
       return res.status(400).json({
         elegivel: false,
         razoesInelegibilidade: [error.errors?.join(", ")],
