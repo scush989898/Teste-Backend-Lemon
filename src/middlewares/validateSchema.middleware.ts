@@ -2,8 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { AnySchema } from "yup";
 
 const validationMiddleware =
-  (schema: AnySchema) =>
-  async (req: Request, res: Response, next: NextFunction) => {
+  (schema: AnySchema) => async (req: Request, res: Response, next: NextFunction) => {
     try {
       const client = req.body;
 

@@ -9,9 +9,7 @@ const eligibilityTerms = {
 
 const amountCarbonKG = 84;
 
-const clientEligibleService = (
-  data: IClientRequest
-): number => {
+const clientEligibleService = (data: IClientRequest): number => {
   const [average, sum] = getAvgConsumption(data.historicoDeConsumo);
   const connectionAvg = getConnectionAvg(data.tipoDeConexao);
 
